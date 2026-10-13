@@ -1,0 +1,49 @@
+int calculateAverage(List<int> scores) {
+  int total = 0;
+
+  for (int i = 0; i < scores.length; i++) {
+    total += scores[i];
+  }
+
+  return total ~/ scores.length;
+}
+
+void main() {
+  try {
+    List<List<int>> students = [
+      [90, 85, 95],
+      [60, 65, 70],
+      [80, 75, 85],
+      [50, 55, 60],
+      [95, 90, 88],
+    ];
+
+    for (int i = 0; i < students.length; i++) {
+      List<int> scores = students[i];
+
+      for (int j = 0; j < scores.length; j++) {
+        if (scores[j] < 0 || scores[j] > 100) {
+          print('Invalid score for Student ${i + 1}');
+          return;
+        }
+      }
+
+      int average = calculateAverage(scores);
+
+      print('\nStudent ${i + 1}');
+      print('Scores: $scores');
+      print('Average: $average');
+
+      if (average >= 75) {
+        print('Result: PASSED');
+      } else {
+        print('Result: FAILED');
+      }
+    }
+
+    String badInput = 'abc';
+    int.parse(badInput);
+  } catch (e) {
+    print('\nError handled: Invalid input. Please enter numbers only.');
+  }
+}
